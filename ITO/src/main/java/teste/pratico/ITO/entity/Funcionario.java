@@ -31,4 +31,56 @@ public class Funcionario {
     @JoinColumn(name = "equipe_id", nullable = false) 
     private Equipe equipe;
 
+    public Funcionario() {
+    }
+
+    public Funcionario(Long id, String nome, String cargo, String email, Equipe equipe) {
+        this.id = id;
+        this.nome = nome;
+        this.cargo = cargo;
+        this.email = email;
+        this.equipe = equipe;
+    }
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Equipe getEquipe() {
+        return equipe;
+    }
+
+    public void setEquipe(Equipe equipe) {
+        this.equipe = equipe;
+    }
+
+    
 }
