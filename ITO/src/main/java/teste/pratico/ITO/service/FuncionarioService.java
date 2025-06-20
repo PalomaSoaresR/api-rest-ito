@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import teste.pratico.ITO.entity.Equipe;
 import teste.pratico.ITO.entity.Funcionario;
+import teste.pratico.ITO.exception.EmailGerenteVazioException;
 import teste.pratico.ITO.repository.EquipeRepository;
 import teste.pratico.ITO.repository.FuncionarioRepository;
 
@@ -21,7 +22,10 @@ public class FuncionarioService {
     public Funcionario cadastrarFuncionario(Funcionario novofuncionario) {
         Equipe equipe = equipeRepository.findById(novofuncionario.getEquipe().getId())
                 .orElseThrow(() -> new RuntimeException("Equipe não encontrada"));
-
+        if ("Gerente".equalsIgnoreCase(novofuncionario.getCargo()) &&
+                (novofuncionario.getEmail() == null || novofuncionario.getEmail().isBlank())) {
+            throw new EmailGerenteVazioException();
+        }
         Funcionario funcionario = new Funcionario();
         funcionario.setNome(novofuncionario.getNome());
         funcionario.setCargo(novofuncionario.getCargo());
