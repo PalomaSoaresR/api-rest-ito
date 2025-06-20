@@ -1,5 +1,7 @@
 package teste.pratico.ITO.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +31,7 @@ public class Funcionario {
 
     @ManyToOne(optional = false) 
     @JoinColumn(name = "equipe_id", nullable = false) 
+    @JsonIgnoreProperties("funcionarios") 
     private Equipe equipe;
 
     public Funcionario() {
