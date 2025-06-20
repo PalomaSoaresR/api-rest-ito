@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,11 +29,13 @@ public class FuncionarioController {
     }
 
     @PostMapping
-    public ResponseEntity<String> cadastrarFuncionario(Funcionario funcionario) {
+    public ResponseEntity<String> cadastrarFuncionario(@RequestBody Funcionario funcionario) {
         funcionarioService.cadastrarFuncionario(funcionario);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body("Funcionário cadastrado com sucesso!");
+                .body("Funcionario cadastrado com sucesso!");
     }
-
+    
 }
+
+
