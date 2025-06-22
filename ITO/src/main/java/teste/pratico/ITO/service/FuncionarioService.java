@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import teste.pratico.ITO.entity.Equipe;
 import teste.pratico.ITO.entity.Funcionario;
 import teste.pratico.ITO.exception.EmailGerenteVazioException;
+import teste.pratico.ITO.exception.EmailJaCadastradoException;
 import teste.pratico.ITO.repository.EquipeRepository;
 import teste.pratico.ITO.repository.FuncionarioRepository;
 
@@ -32,6 +33,11 @@ public class FuncionarioService {
                 throw new IllegalArgumentException("Formato de e-mail inválido para Gerente");
             }
         }
+
+        if (funcionarioRepository.existsByEmail(novofuncionario.getEmail())) {
+            throw new EmailJaCadastradoException("Email já cadastrado: " + novofuncionario.getEmail());
+        }
+        
         Funcionario funcionario = new Funcionario();
         funcionario.setNome(novofuncionario.getNome());
         funcionario.setCargo(novofuncionario.getCargo());
