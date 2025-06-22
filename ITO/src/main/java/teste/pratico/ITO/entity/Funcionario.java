@@ -10,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "funcionario")
@@ -27,11 +29,13 @@ public class Funcionario {
     private String cargo;
 
     @Column(name = "fun_email")
+    @Email(message = "Email inválido")
+    @NotBlank(message = "Email é obrigatório")
     private String email;
 
-    @ManyToOne(optional = false) 
-    @JoinColumn(name = "equipe_id", nullable = false) 
-    @JsonIgnoreProperties("funcionarios") 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "equipe_id", nullable = false)
+    @JsonIgnoreProperties("funcionarios")
     private Equipe equipe;
 
     public Funcionario() {
@@ -44,7 +48,7 @@ public class Funcionario {
         this.email = email;
         this.equipe = equipe;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -85,5 +89,4 @@ public class Funcionario {
         this.equipe = equipe;
     }
 
-    
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import teste.pratico.ITO.entity.Funcionario;
 import teste.pratico.ITO.service.FuncionarioService;
 
@@ -29,7 +30,7 @@ public class FuncionarioController {
     }
 
     @PostMapping
-    public ResponseEntity<String> cadastrarFuncionario(@RequestBody Funcionario funcionario) {
+    public ResponseEntity<String> cadastrarFuncionario(@RequestBody @Valid Funcionario funcionario) {
         funcionarioService.cadastrarFuncionario(funcionario);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
