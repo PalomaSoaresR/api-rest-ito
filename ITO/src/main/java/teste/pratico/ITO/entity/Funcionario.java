@@ -29,8 +29,6 @@ public class Funcionario {
     private String cargo;
 
     @Column(name = "fun_email")
-    @Email(message = "Email inválido")
-    @NotBlank(message = "Email é obrigatório")
     private String email;
 
     @ManyToOne(optional = false)

@@ -22,9 +22,15 @@ public class FuncionarioService {
     public Funcionario cadastrarFuncionario(Funcionario novofuncionario) {
         Equipe equipe = equipeRepository.findById(novofuncionario.getEquipe().getId())
                 .orElseThrow(() -> new RuntimeException("Equipe não encontrada"));
-        if ("Gerente".equalsIgnoreCase(novofuncionario.getCargo()) &&
-                (novofuncionario.getEmail() == null || novofuncionario.getEmail().isBlank())) {
-            throw new EmailGerenteVazioException();
+
+        if ("Gerente".equalsIgnoreCase(novofuncionario.getCargo())) {
+            if (novofuncionario.getEmail() == null || novofuncionario.getEmail().isBlank()) {
+                throw new EmailGerenteVazioException();
+            }
+
+            if (!novofuncionario.getEmail().matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+                throw new IllegalArgumentException("Formato de e-mail inválido para Gerente");
+            }
         }
         Funcionario funcionario = new Funcionario();
         funcionario.setNome(novofuncionario.getNome());
