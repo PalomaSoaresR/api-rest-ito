@@ -35,7 +35,7 @@ public class FuncionarioService {
         }
 
         if (funcionarioRepository.existsByEmail(novofuncionario.getEmail())) {
-            throw new EmailJaCadastradoException("Email já cadastrado: " + novofuncionario.getEmail());
+            throw new EmailJaCadastradoException(novofuncionario.getEmail());
         }
         
         Funcionario funcionario = new Funcionario();
