@@ -17,7 +17,7 @@ public class EquipeService {
 
     public Equipe cadastrarEquipe(Equipe equipe) {
         if (equipeRepository.existsBySetor(equipe.getSetor())) {
-            throw new SetorJaCadastradoException(null);
+            throw new SetorJaCadastradoException(equipe.getSetor());
         }
         return equipeRepository.save(equipe);
     }

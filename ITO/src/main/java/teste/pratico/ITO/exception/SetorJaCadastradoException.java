@@ -1,7 +1,7 @@
 package teste.pratico.ITO.exception;
 
 public class SetorJaCadastradoException extends RuntimeException {
-    public SetorJaCadastradoException(String message) {
-        super("O setor já está cadastrado.");
+    public SetorJaCadastradoException(String setor) {
+        super("O setor " + setor + " já está cadastrado.");
     }
 }
